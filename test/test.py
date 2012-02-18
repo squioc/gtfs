@@ -1,6 +1,6 @@
 from gtfs.loader import load
 from gtfs.schedule import Schedule
-from gtfs.types import Boolean
+from sqlalchemy.types import Boolean
 
 import unittest
 
