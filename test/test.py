@@ -1,6 +1,5 @@
 from gtfs.loader import load
 from gtfs.schedule import Schedule
-from sqlalchemy.types import Boolean
 
 import unittest
 
@@ -15,7 +14,7 @@ class TestSchedule(unittest.TestCase):
     self.assertEqual( [sp.service_id for sp in self.schedule.service_periods],
                       ["WE","WD"] )
     self.assertEqual( type( self.schedule.service_periods[0].monday ),
-                      Boolean )
+                      bool )
 
   def test_stops( self ):
     self.assertEqual( [st.stop_id for st in self.schedule.stops],
@@ -28,7 +27,7 @@ class TestSchedule(unittest.TestCase):
   def test_trip_stop_times( self ):
     self.assertEqual( [(st.arrival_time.val if st.arrival_time else None,
                         st.departure_time.val if st.departure_time else None) for st in self.schedule.routes[0].trips[0].stop_times],
-                      [(370, 370), (None, None), (380, 390), (None, None), (405, 405)] )
+                      [(370, 370), (375, 377), (380, 390), (390, 392), (405, 405)] )
 
   def test_service_period_trips( self ):
     self.assertEqual( [tr.trip_id for tr in self.schedule.service_periods[0].trips],
