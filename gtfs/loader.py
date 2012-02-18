@@ -4,9 +4,10 @@ from gtfs.feed import Feed, FileNotFoundError
 from gtfs.schedule import Schedule
 from gtfs.entity import *
 
+DEFAULT_CONNECTION_STRING = "sqlite:///:memory:"
 
-def load(feed_filename, db_filename=":memory:"):
-    schedule = Schedule(db_filename)
+def load(feed_filename, connection_string=DEFAULT_CONNECTION_STRING):
+    schedule = Schedule(connection_string)
     schedule.create_tables()
 
     schedule.engine.execute("PRAGMA synchronous=OFF")

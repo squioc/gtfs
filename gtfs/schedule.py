@@ -5,11 +5,10 @@ from gtfs.entity import *
 
 
 class Schedule:
-    def __init__(self, db_filename, echo=False):
-        self.db_filename = db_filename
+    def __init__(self, connection_string, echo=False):
+        self.db_filename = connection_string
 
-        self.engine = sqlalchemy.create_engine(
-            'sqlite:///%s' % self.db_filename, echo=echo)
+        self.engine = sqlalchemy.create_engine(connection_string, echo=echo)
 
         Base.metadata.bind = self.engine
 
