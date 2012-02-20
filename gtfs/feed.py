@@ -1,7 +1,7 @@
 import os
 import errno
 from zipfile import ZipFile
-from csv import DictReader
+from gtfs.utils import CSVUnicodeReader
 
 
 class Feed(object):
@@ -30,9 +30,10 @@ class Feed(object):
                 else:
                     raise
 
-        dr = DictReader(f)
+        dr = CSVUnicodeReader(f)
         return dr
 
 
 class FileNotFoundError(Exception):
     pass
+
